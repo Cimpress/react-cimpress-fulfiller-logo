@@ -12,7 +12,6 @@ export default class FulfillerLogo extends React.Component {
   }
 
   fetchImage(isVisible) {
-    console.log(isVisible);
     if (isVisible && !this.state.imageBlob) {
       let headers = new Headers();
       headers.append("Authorization", `Bearer ${this.props.accessToken}`);
