@@ -7,13 +7,12 @@ export default class FulfillerLogo extends React.Component {
     super(props);
     this.url = `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${props.fulfillerId}/logo`;
     this.state = {
-      imageBlog: null,
+      imageBlob: null,
     }
   }
 
   fetchImage(isVisible) {
-    console.log(isVisible);
-    if (isVisible && !this.state.imageBlog) {
+    if (isVisible && !this.state.imageBlob) {
       let headers = new Headers();
       headers.append("Authorization", `Bearer ${this.props.accessToken}`);
       headers.append("Accept", "image/*");
