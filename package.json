@@ -1,8 +1,9 @@
 {
   "name": "react-cimpress-fulfiller-logo",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Fetches fulfiller logo from Fulfiller Identity Service.",
-  "main": "lib/index.js",
+  "main": "./lib/index.js",
+  "module": "./src/index.js",
   "scripts": {
     "build": "babel src -d lib"
   },
@@ -15,7 +16,7 @@
     "fulfiller"
   ],
   "files": [
-    "lib"
+    "lib", "src"
   ],
   "bugs": {
     "url": "https://github.com/Cimpress-MCP/react-cimpress-fulfiller-logo/issues"
