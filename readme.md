@@ -10,5 +10,8 @@ Install the npm package
 
 import the component
 
-`import { FulfillerLogo } from 'react-cimpress-fulfiller-logo'`
+`import FulfillerLogo from 'react-cimpress-fulfiller-logo'`
 
+and then use wherever needed
+
+`<FulfillerLogo className="fulfillerLogos" fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>`

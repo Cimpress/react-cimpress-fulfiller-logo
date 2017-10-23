@@ -1,9 +1,8 @@
 {
   "name": "react-cimpress-fulfiller-logo",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Fetches fulfiller logo from Fulfiller Identity Service.",
   "main": "./lib/index.js",
-  "module": "./src/index.js",
   "scripts": {
     "build": "babel src -d lib"
   },
