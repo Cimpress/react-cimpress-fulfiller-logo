@@ -21,7 +21,11 @@ export default class FulfillerLogo extends React.Component {
         mode: 'cors',
         cache: 'default' };
       fetch(this.url, init).then(response => {
-        return response.blob();
+        if (response.status === 200) {
+          return response.blob();
+        } else {
+          throw new Error(`No logo: ${this.url}`)
+        }
       }).then(blob => {
         this.setState({imageBlob: blob})
       });
@@ -34,7 +38,7 @@ export default class FulfillerLogo extends React.Component {
       let objectURL = URL.createObjectURL(this.state.imageBlob);
       content = <img className={this.props.className} src={objectURL}/>;
     } else {
-      content = <div className={this.props.className}>No image</div>;
+      content = <div className={this.props.className}></div>;
     }
 
     return (
