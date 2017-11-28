@@ -17,13 +17,13 @@ export default class FulfillerLogo extends React.Component {
     this.defaultStyle = {
       maxWidth: "50px",
       maxHeight: "50px",
-      display: "inline-block",
       objectFit: "contain",
       width: "50px",
       height: "50px",
       marginRight: "10px",
-      verticalAlign: "middle"
-    };
+      verticalAlign: "middle",
+      alignContent: "center"
+  };
   }
 
   componentWillReceiveProps (newProps) {
@@ -79,7 +79,7 @@ export default class FulfillerLogo extends React.Component {
     let childContent = null;
     if (this.state.imageBlob) {
       let objectURL = URL.createObjectURL(this.state.imageBlob);
-      childContent = <img style={{width: "100%", height: "auto", maxWidth: "100%"}} src={objectURL}/>;
+      childContent = <img style={{maxWidth:"inherit", maxHeight:"inherit"}} src={objectURL}/>;
     } else if (this.state.imageIsLoading && this.props.imageLoading) {
       childContent = this.props.imageLoading;
     } else if (this.state.imageIsForbidden && this.props.noAccess) {
