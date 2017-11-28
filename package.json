@@ -30,6 +30,7 @@
     "babel-plugin-transform-react-jsx": "^6.24.1"
   },
   "dependencies": {
+    "prop-types": "^15.6.0",
     "react-visibility-sensor": "^3.10.1"
   }
 }
