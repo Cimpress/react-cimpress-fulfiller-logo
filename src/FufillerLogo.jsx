@@ -63,6 +63,7 @@ export default class FulfillerLogo extends React.Component {
       }).then(blob => {
         this.setState({imageBlob: blob});
       }).catch(err => {
+        console.log(`Unable to fetch image for ${this.state.fulfillerId}, return status ${err.status}`);
         this.setState({
           imageIsForbidden: err.status === 403
         });
