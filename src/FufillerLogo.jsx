@@ -20,8 +20,7 @@ export default class FulfillerLogo extends React.Component {
       this.setState({
         imageBlob: null,
         url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${newProps.fulfillerId}/logo`
-      });
-      this.fetchImage(this.state.visible);
+      }, () => this.fetchImage(this.state.visible));
     }
   }
 
