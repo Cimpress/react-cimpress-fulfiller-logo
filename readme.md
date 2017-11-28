@@ -35,6 +35,6 @@ In order to override loading behaviour provide `imageLoading` with the content.
 
 ### To override default behaviour when no image is available
 
-In order to override loading behaviour provide `imageLoading` with the content.
+In order to override behaviour when no image is available provide `noImage` with the content.
 
     <FulfillerLogo noImage={"No Image"} fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>
