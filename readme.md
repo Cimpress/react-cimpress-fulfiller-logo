@@ -22,7 +22,7 @@ Component uses sane defaults, which can be overridden.
 
 In order to override styles provide `className`
 
-    `<FulfillerLogo className="fulfillerLogos" fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>`
+    <FulfillerLogo className="fulfillerLogos" fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>
 
 ### To override default loading behaviour
 
@@ -38,7 +38,6 @@ In order to override loading behaviour provide `imageLoading` with the content.
 In order to override behaviour when no image is available provide `noImage` with the content.
 
     <FulfillerLogo noImage={"No Image"} fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>
-
 
 ### Other overrides
 
