@@ -9,6 +9,7 @@ export default class FulfillerLogo extends React.Component {
     this.state = {
       imageBlob: null,
       url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${props.fulfillerId}/logo`,
+      visible: false,
       imageIsLoading: false,
       imageIsForbidden: false,
     };
@@ -19,11 +20,16 @@ export default class FulfillerLogo extends React.Component {
       this.setState({
         imageBlob: null,
         url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${newProps.fulfillerId}/logo`
-      })
+      });
+      this.fetchImage(this.state.visible);
+      }
     }
   }
 
   fetchImage (isVisible) {
+    this.setState({
+      visible: isVisible
+    });
     if (isVisible && !this.state.imageBlob) {
       this.setState({
         imageIsLoading: true
