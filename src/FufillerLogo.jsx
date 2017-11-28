@@ -76,19 +76,23 @@ export default class FulfillerLogo extends React.Component {
   }
 
   render () {
-    let childContent = null;
+    let childContent = this.props.placeholder;
     if (this.state.imageBlob) {
       let objectURL = URL.createObjectURL(this.state.imageBlob);
       childContent = <img style={{maxWidth:"inherit", maxHeight:"inherit"}} src={objectURL}/>;
-    } else if (this.state.imageIsLoading && this.props.imageLoading) {
-      childContent = this.props.imageLoading;
-    } else if (this.state.imageIsForbidden && this.props.noAccess) {
-      childContent = this.props.noAccess;
+    } else if (this.state.imageIsLoading) {
+      childContent = this.props.imageLoading || this.props.placeholder;
+    } else if (this.state.imageIsForbidden) {
+      childContent = this.props.noAccess || this.props.noImage || this.props.placeholder;
     } else if (this.props.noImage) {
-      childContent = this.props.noImage
+      childContent = this.props.noImage || this.props.placeholder
     }
 
     let content = null;
+
+    if (!childContent) {
+      childContent = <span/>
+    }
 
     if (this.props.className) {
       content = <div className={this.props.className}>{childContent}</div>;
@@ -109,5 +113,6 @@ FulfillerLogo.propTypes = {
   accessToken: PropTypes.string,
   noImage: PropTypes.object,
   imageLoading: PropTypes.object,
-  noAccess: PropTypes.object
+  noAccess: PropTypes.object,
+  placeholder: PropTypes.object
 };

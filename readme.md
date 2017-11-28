@@ -38,3 +38,21 @@ In order to override loading behaviour provide `imageLoading` with the content.
 In order to override behaviour when no image is available provide `noImage` with the content.
 
     <FulfillerLogo noImage={"No Image"} fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>
+
+
+### Other overrides
+
+Fulfiller Logo defines following props, that take content
+
+      noImage: PropTypes.object,
+      imageLoading: PropTypes.object,
+      noAccess: PropTypes.object,
+      placeholder: PropTypes.object
+
+`placeholder` is the image that is displayed from the mounting moment till the loading starts (since the component automatically loads the image when it comes into view this should very short period of time
+
+`imageLoading` is the content that is displayed while loading, falls back to `placeholder`
+
+`noAccess` is shown when the user doesn't have access to see fulfiller logo, falls back to `noImage`
+
+`noImage` what gets displayed if the image is not available (for whatever reason)
