@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 export default class FulfillerLogo extends React.Component {
 
@@ -11,7 +11,7 @@ export default class FulfillerLogo extends React.Component {
       url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${props.fulfillerId}/logo`,
       visible: false,
       imageIsLoading: false,
-      imageIsForbidden: false,
+      imageIsForbidden: false
     };
   }
 
@@ -22,7 +22,6 @@ export default class FulfillerLogo extends React.Component {
         url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${newProps.fulfillerId}/logo`
       });
       this.fetchImage(this.state.visible);
-      }
     }
   }
 
@@ -52,14 +51,14 @@ export default class FulfillerLogo extends React.Component {
       }).then(blob => {
         this.setState({imageBlob: blob});
       }).catch(err => {
-          this.setState({
-            imageIsForbidden: err.status === 403
-          });
+        this.setState({
+          imageIsForbidden: err.status === 403
+        });
       }).then(() => {
         this.setState({
           imageIsLoading: false
         });
-      })
+      });
     }
   }
 
@@ -75,7 +74,7 @@ export default class FulfillerLogo extends React.Component {
     } else if (this.props.noImage) {
       content = <div className={this.props.className}>{this.props.noImage}</div>;
     } else if (this.props.noImage) {
-      content = <div className={this.props.className}/>
+      content = <div className={this.props.className}/>;
     }
 
     return (
@@ -92,4 +91,4 @@ FulfillerLogo.propTypes = {
   noImage: PropTypes.object,
   imageLoading: PropTypes.object,
   noAccess: PropTypes.object
-}
+};
