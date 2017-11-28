@@ -22,7 +22,7 @@ Component uses sane defaults, which can be overridden.
 
 In order to override styles provide `className`
 
-`<FulfillerLogo className="fulfillerLogos" fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>`
+    `<FulfillerLogo className="fulfillerLogos" fulfillerId="fulfillerId" accessToken={localStorage.getItem('accessToken')}/>`
 
 ### To override default loading behaviour
 
