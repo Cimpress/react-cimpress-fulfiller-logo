@@ -4,14 +4,25 @@ import PropTypes from 'prop-types';
 
 export default class FulfillerLogo extends React.Component {
 
+
   constructor (props) {
     super(props);
     this.state = {
       imageBlob: null,
-      url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${props.fulfillerId}/logo`,
+      fulfillerId: props.fulfillerId,
       visible: false,
       imageIsLoading: false,
-      imageIsForbidden: false
+      imageIsForbidden: false,
+    };
+    this.defaultStyle = {
+      maxWidth: "50px",
+      maxHeight: "50px",
+      display: "inline-block",
+      objectFit: "contain",
+      width: "50px",
+      height: "50px",
+      marginRight: "10px",
+      verticalAlign: "middle"
     };
   }
 
@@ -19,7 +30,7 @@ export default class FulfillerLogo extends React.Component {
     if (newProps.fulfillerId !== this.props.fulfillerId) {
       this.setState({
         imageBlob: null,
-        url: `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${newProps.fulfillerId}/logo`
+        fulfillerId: newProps.fulfillerId,
       }, () => this.fetchImage(this.state.visible));
     }
   }
@@ -41,7 +52,9 @@ export default class FulfillerLogo extends React.Component {
         mode: 'cors',
         cache: 'default'
       };
-      fetch(this.url, init).then(response => {
+      let url = `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${this.state.fulfillerId}/logo`;
+
+      fetch(url, init).then(response => {
         if (response.status === 200) {
           return response.blob();
         } else {
@@ -62,18 +75,24 @@ export default class FulfillerLogo extends React.Component {
   }
 
   render () {
-    let content = null;
+    let childContent = null;
     if (this.state.imageBlob) {
       let objectURL = URL.createObjectURL(this.state.imageBlob);
-      content = <img className={this.props.className} src={objectURL}/>;
+      childContent = <img style={{width: "100%", height: "auto", maxWidth: "100%"}} src={objectURL}/>;
     } else if (this.state.imageIsLoading && this.props.imageLoading) {
-      content = <div className={this.props.className}>{this.props.imageLoading}</div>;
+      childContent = this.props.imageLoading;
     } else if (this.state.imageIsForbidden && this.props.noAccess) {
-      content = <div className={this.props.className}>{this.props.noAccess}</div>;
+      childContent = this.props.noAccess;
     } else if (this.props.noImage) {
-      content = <div className={this.props.className}>{this.props.noImage}</div>;
-    } else if (this.props.noImage) {
-      content = <div className={this.props.className}/>;
+      childContent = this.props.noImage
+    }
+
+    let content = null;
+
+    if (this.props.className) {
+      content = <div className={this.props.className}>{childContent}</div>;
+    } else {
+      content = <div style={this.defaultStyle}>{childContent}</div>;
     }
 
     return (
@@ -85,8 +104,8 @@ export default class FulfillerLogo extends React.Component {
 }
 
 FulfillerLogo.propTypes = {
-  fulfillerId: PropTypes.string.required,
-  accessToken: PropTypes.string.required,
+  fulfillerId: PropTypes.string,
+  accessToken: PropTypes.string,
   noImage: PropTypes.object,
   imageLoading: PropTypes.object,
   noAccess: PropTypes.object
