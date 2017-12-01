@@ -4,7 +4,8 @@
   "description": "Fetches fulfiller logo from Fulfiller Identity Service.",
   "main": "./lib/index.js",
   "scripts": {
-    "build": "babel src -d lib"
+    "build": "babel src -d lib",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,17 @@
   "files": [
     "lib"
   ],
+  "jest": {
+    "verbose": true,
+    "moduleDirectories": [
+      "node_modules",
+      "src"
+    ],
+    "moduleFileExtensions": [
+      "js",
+      "jsx"
+    ]
+  },
   "bugs": {
     "url": "https://github.com/Cimpress-MCP/react-cimpress-fulfiller-logo/issues"
   },
@@ -26,10 +38,16 @@
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1"
+    "babel-plugin-transform-es2015-modules-commonjs": "^6.26.0",
+    "babel-plugin-transform-react-jsx": "^6.24.1",
+    "jest": "^21.2.1",
+    "jest-cli": "^21.2.1",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-test-renderer": "^16.2.0"
   },
   "dependencies": {
     "prop-types": "^15.6.0",
-    "react-visibility-sensor": "^3.10.1"
+    "react-visibility-sensor": "^3.11.0"
   }
 }

@@ -2,17 +2,17 @@ import React, { Component } from 'react';
 import VisibilitySensor from 'react-visibility-sensor';
 import PropTypes from 'prop-types';
 
-export default class FulfillerLogo extends React.Component {
-
+export default class  FulfillerLogo extends React.Component {
 
   constructor (props) {
     super(props);
     this.state = {
-      imageBlob: null,
+      imageObjectUrl: null,
       fulfillerId: props.fulfillerId,
       visible: false,
       imageIsLoading: false,
       imageIsForbidden: false,
+      imageIsNotPresent: false
     };
     this.defaultStyle = {
       maxWidth: "50px",
@@ -28,18 +28,31 @@ export default class FulfillerLogo extends React.Component {
 
   componentWillReceiveProps (newProps) {
     if (newProps.fulfillerId !== this.props.fulfillerId) {
+      if (this.state.imageObjectUrl) {
+        URL.revokeObjectURL(this.state.imageObjectUrl);
+      }
       this.setState({
-        imageBlob: null,
+        imageObjectUrl: null,
         fulfillerId: newProps.fulfillerId,
       }, () => this.fetchImage(this.state.visible));
     }
+  }
+
+  componentWillUnmount() {
+    if (this.state.imageObjectUrl) {
+      URL.revokeObjectURL(this.state.imageObjectUrl);
+    }
+  }
+
+  shouldRetryLoading() {
+    return !(this.state.imageIsForbidden || this.state.imageIsNotPresent);
   }
 
   fetchImage (isVisible) {
     this.setState({
       visible: isVisible
     });
-    if (isVisible && !this.state.imageBlob) {
+    if (isVisible && !this.state.imageObjectUrl && this.shouldRetryLoading()) {
       this.setState({
         imageIsLoading: true
       });
@@ -61,11 +74,12 @@ export default class FulfillerLogo extends React.Component {
           throw response;
         }
       }).then(blob => {
-        this.setState({imageBlob: blob});
+        this.setState({imageObjectUrl: URL.createObjectURL(blob)})
       }).catch(err => {
         console.log(`Unable to fetch image for ${this.state.fulfillerId}, return status ${err.status}`);
         this.setState({
-          imageIsForbidden: err.status === 403
+          imageIsForbidden: err.status === 403,
+          imageIsNotPresent: err.status === 404
         });
       }).then(() => {
         this.setState({
@@ -77,9 +91,8 @@ export default class FulfillerLogo extends React.Component {
 
   render () {
     let childContent = this.props.placeholder;
-    if (this.state.imageBlob) {
-      let objectURL = URL.createObjectURL(this.state.imageBlob);
-      childContent = <img style={{maxWidth:"inherit", maxHeight:"inherit"}} src={objectURL}/>;
+    if (this.state.imageObjectUrl) {
+      childContent = <img style={{maxWidth:"inherit", maxHeight:"inherit"}} src={this.state.imageObjectUrl}/>;
     } else if (this.state.imageIsLoading) {
       childContent = this.props.imageLoading || this.props.placeholder;
     } else if (this.state.imageIsForbidden) {
@@ -101,7 +114,7 @@ export default class FulfillerLogo extends React.Component {
     }
 
     return (
-      <VisibilitySensor partialVisibility={true} scrollCheck={true} onChange={this.fetchImage.bind(this)}>
+      <VisibilitySensor partialVisibility={true} scrollDelay={1000} scrollCheck={true} onChange={this.fetchImage.bind(this)}>
         {content}
       </VisibilitySensor>
     );
