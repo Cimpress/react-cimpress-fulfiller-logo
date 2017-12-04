@@ -34,6 +34,9 @@ export default class  FulfillerLogo extends React.Component {
       this.setState({
         imageObjectUrl: null,
         fulfillerId: newProps.fulfillerId,
+        imageIsLoading: false,
+        imageIsForbidden: false,
+        imageIsNotPresent: false
       }, () => this.fetchImage(this.state.visible));
     }
   }
