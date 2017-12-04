@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`FulfillerLogo renders correctly 1`] = `
+<div
+  onChange={[Function]}
+  partialVisibility={true}
+  scrollCheck={true}
+  scrollDelay={1000}
+>
+  <div
+    style={
+      Object {
+        "alignContent": "center",
+        "height": "50px",
+        "marginRight": "10px",
+        "maxHeight": "50px",
+        "maxWidth": "50px",
+        "objectFit": "contain",
+        "verticalAlign": "middle",
+        "width": "50px",
+      }
+    }
+  >
+    <span />
+  </div>
+</div>
+`;
