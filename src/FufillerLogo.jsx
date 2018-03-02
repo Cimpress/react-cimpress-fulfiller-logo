@@ -69,7 +69,12 @@ export default class  FulfillerLogo extends React.Component {
         cache: 'default'
       };
       let url = `https://fulfilleridentity.trdlnk.cimpress.io/v1/fulfillers/${this.state.fulfillerId}/logo`;
-
+      try {
+        let cacheSuffix = this.props.accessToken ? JSON.parse(atob(this.props.accessToken.split('.')[1])).sub : null;
+        url += `?user=${cacheSuffix}`;
+      } catch (err) {
+        console.log("Unable to extract sub from the token");
+      }
       fetch(url, init).then(response => {
         if (response.status === 200) {
           return response.blob();
