@@ -35,6 +35,10 @@
   "homepage": "https://github.com/Cimpress-MCP/react-cimpress-fulfiller-logo#readme",
   "author": "Rafał Nowosielski <rafal@nowosielski.email>",
   "license": "Apache-2.0",
+  "peerDependencies": {
+    "react": "^15.0.0 || ^16.0.0",
+    "react-dom": "^15.0.0 || ^16.0.0"
+  },
   "devDependencies": {
     "babel": "^6.23.0",
     "babel-cli": "^6.24.1",
