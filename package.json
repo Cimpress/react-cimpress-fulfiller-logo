@@ -40,11 +40,10 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
     "@babel/preset-env": "^7.4.5",
-    "babel": "^6.23.0",
-    "babel-cli": "^6.24.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
     "jest": "^24.8.0",
     "jest-cli": "^24.8.0",
     "react": "^16.2.0",
