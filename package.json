@@ -1,6 +1,6 @@
 {
   "name": "react-cimpress-fulfiller-logo",
-  "version": "0.0.17",
+  "version": "0.0.18",
   "description": "Fetches fulfiller logo from Fulfiller Identity Service.",
   "main": "./lib/index.js",
   "scripts": {
@@ -40,12 +40,12 @@
     "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.24.1",
-    "babel-plugin-transform-react-jsx": "^6.24.1",
-    "babel-preset-env": "^1.6.1",
-    "jest": "^21.2.1",
-    "jest-cli": "^21.2.1",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/plugin-transform-react-jsx": "^7.3.0",
+    "@babel/preset-env": "^7.4.5",
+    "jest": "^24.8.0",
+    "jest-cli": "^24.8.0",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "react-test-renderer": "^16.2.0"
